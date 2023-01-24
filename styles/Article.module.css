@@ -1,0 +1,153 @@
+.main {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.message {
+  margin-top: 54px;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  margin-right: 50px;
+}
+
+.imageContainer {
+  height: 85vh;
+
+  /* disabling text highlight when dragging images */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.right {
+  min-height: 580px;
+  /* height: 60vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* margin-top: -80px;  */
+}
+
+.topRight {
+  width: 26vw;
+  min-width: 300px;
+  /* padding: 12px; */
+  /* border: 1px solid #b8b8b8;
+    border-radius: 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
+}
+
+.brand {
+  margin: 0;
+  font-size: 54px;
+  font-weight: 400;
+}
+
+.model {
+  margin: 0px 0px 1rem 0;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.price {
+  margin: 0px 0px 1.7rem 0;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.container {
+  display: flex;
+}
+
+.buttonAnimation {
+
+}
+
+.cartIcon {
+  margin-right: 6px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #151515;
+  width: 90px;
+  border-radius: 8px;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  height: 44px;
+  line-height: 20px;
+  list-style: none;
+  margin-top: 10px;
+  outline: none;
+  padding: 10px 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.button:hover {
+  background-color: #6b6b6b;
+}
+.button:active {
+  transform: translateY(2px);
+}
+
+.descContainer {
+  width: 30vw;
+  min-width: 300px;
+}
+
+.descText {
+  font-size: 18px;
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+.iconText {
+  font-size: 20px;
+  margin: 4px 4px 4px 0;
+}
+
+.brandContainer {
+  display: flex;
+}

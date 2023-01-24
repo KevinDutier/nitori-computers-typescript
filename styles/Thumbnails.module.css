@@ -1,0 +1,42 @@
+/* contains the text and the semi-opaque layer */
+.imageOverlay {
+  opacity: 0; /* by default, the style and text are hidden */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.33);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* transition when user hovers */
+  transition: opacity 0.2s;
+}
+
+.imageOverlay:hover {
+  /* once the user hovers over image, the style and text are shown */
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* target every child of imageOverlay */
+.imageOverlay * {
+  /* by default, text is 24px low */
+  transform: translateY(24px);
+  transition: transform 0.2s;
+}
+
+/* target every child of imageOverlay on hover */
+.imageOverlay:hover > * {
+  /* once the user hovers over image, text is brought up to the center */
+  transform: translateY(0);
+}
+
+/* just contains the title (Laptops, Gaming laptops, ...) */
+.imageTitle {
+  font-size: 40px;
+  font-weight: 500;
+}

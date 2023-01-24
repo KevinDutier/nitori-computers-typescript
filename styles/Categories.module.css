@@ -1,0 +1,30 @@
+.categories {
+  margin: 16px auto; /* centers the container */
+  width: 80vw;
+  display: flex;
+  justify-content: center; /* centers the images inside the container*/ 
+}
+
+.imageContainer {
+    margin: 0px 8px; /* margin between each category */
+
+    /* centers text with images (laptops, desktops...) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* grow effect */
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+  }
+  .imageContainer:hover, .imageContainer:focus, .imageContainer:active {
+    /* grow effect on hover */
+    /* on hover, image will scale to 108% */
+    -webkit-transform: scale(1.08); /* chrome, opera, safari */
+    transform: scale(1.08); /* firefox */
+  }
