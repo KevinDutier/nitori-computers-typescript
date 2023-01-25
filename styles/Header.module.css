@@ -1,30 +1,16 @@
 /* cart popover */
-.yourCart {
-  /* padding: 10px 12px 0 12px; */
-  color: #858585;
-  text-align: center;
-}
-
-.image {
-  height: 64px;
-  padding: 4px;
-}
-
 .popoverContainer {
   display: flex;
   justify-content: space-between;
   border-bottom: #b8b8b8 1px solid;
-  /* width: 300px; */
 }
 
 .popover {
-  margin: 6px 4px;
-  /* padding: 4px 4px 0 4px; */
+  margin-top: 0.7em;
   display: flex;
 }
 
 .popoverText {
-  margin-left: 14px;
   display: flex;
   justify-content: space-between;
 }
@@ -35,37 +21,36 @@
   margin: 10px;
 }
 
+.cartTotal {
+  justify-content: space-between;
+}
+
 .brand {
-  /* margin-top: 4px; */
   font-size: 14px;
-  /* margin-bottom: -14px; */
 }
 
 .model {
-  font-size: 18px;
-  margin-bottom: -14px;
+  font-size: 14px;
+}
+
+.priceAndX {
+  display: flex;
 }
 
 .price {
+  margin-top: 0.8em;
+  margin-right: 10px;
   font-size: 14px;
 }
 
 .xIcon {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  margin: 20px 10px 0px 0px;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
 }
 .xIcon:hover {
   color: #b9b9b9;
-}
-
-.popoverLast {
-  padding: 10px 14px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .button {

@@ -8,6 +8,10 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import AboutPopupStyles from "../styles/AboutPopup.module.css"; // styling for the "About" popup
 
+// fontawesome icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
 // boostrap imports
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -129,25 +133,26 @@ export const Header: React.FC = () => {
     if (cart.length === 1) dispatch(resetCartTotal()); // reset cart total to 0
   }
 
-  // cartPopup: articles stored in the store (redux)
+  // cartPopup: shows articles stored in the store (redux)
   const cartPopup = () => {
     // @ts-ignore: "argument of type (...) => JSX.Element" is not assignable to parameter
     const cartArticles = cart.map((article: Article, i: number) => {
       return (
         <div key={i} className={styles.popoverContainer}>
           <div className={styles.popover}>
-            <div className={styles.popoverText}>
-              <p className={styles.brand}>
-                {article.brand} {article.model}
-              </p>
-              <p className={styles.price}>{article.price} €</p>
+            <div>
+              {/* <p className={styles.brand}>{article.brand}</p> */}
+              <p className={styles.model}>{article.model}</p>
             </div>
           </div>
-          <img
-            className={styles.xIcon}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Flat_cross_icon.svg/1200px-Flat_cross_icon.svg.png"
-            onClick={() => handleRemoveClick(article, i)}
-          ></img>
+          <div className={styles.priceAndX}>
+            <p className={styles.price}>{article.price} €</p>
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className={styles.xIcon}
+              onClick={() => handleRemoveClick(article, i)}
+            />
+          </div>
         </div>
       );
     });
