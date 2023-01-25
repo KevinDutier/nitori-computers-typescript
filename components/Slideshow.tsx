@@ -8,7 +8,7 @@ export const Slideshow: React.FC = () => {
   const clickBanner = (index: number) => {
     // redirects when clicking on an image
     if (index === 0) Router.push({ pathname: "./article", query: {reference: "lenovo-thinkpad-x1"}}) // 1st image, redirects to lenovo laptop
-    if (index === 1) Router.push({ pathname: "./article", query: {reference: "lenovo-thinkpad-x1"}}) // 2nd image, redirects to lenovo thinkpad
+    if (index === 1) Router.push({ pathname: "./article", query: {reference: "lenovo-thinkpad-t14"}}) // 2nd image, redirects to lenovo thinkpad
     if (index === 2) Router.push({ pathname: "./article"}) // 3rd image, redirects to lenovo laptop
   }
 
