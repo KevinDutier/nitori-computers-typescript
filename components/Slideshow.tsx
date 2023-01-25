@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Slideshow.module.css";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -8,8 +8,8 @@ export const Slideshow: React.FC = () => {
   const clickBanner = (index: number) => {
     // redirects when clicking on an image
     if (index === 0) Router.push({ pathname: "./article", query: {reference: "lenovo-thinkpad-x1"}}) // 1st image, redirects to thinkpad x1
-    if (index === 1) Router.push({ pathname: "./article", query: {reference: "lenovo-thinkpad-t14"}}) // 2nd image, redirects to thinkpad t14
-    if (index === 2) Router.push({ pathname: "./article"}) // 3rd image, redirects to lenovo laptop
+    if (index === 1) Router.push({ pathname: "./search", query: {parameter: "lenovo"}}) // 2nd image, redirects to lenovo
+    if (index === 2) Router.push({ pathname: "./search", query: {parameter: "samsung"}}) // 3rd image, redirects to samsung
   }
 
   return (
