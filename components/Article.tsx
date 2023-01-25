@@ -120,8 +120,11 @@ export const Article: React.FC = () => {
           {/* contains the brand the "add" button */}
           <div className={styles.container}>
             <p className={styles.brand}>
-              {article.brand} {article.model}
+              {article.brand}
             </p>
+          </div>
+          <div>
+            <p className={styles.model}>{article.model}</p>
           </div>
           {/* end of container */}
 
