@@ -4,6 +4,7 @@
   align-items: center;
 }
 
+
 .message {
   margin-top: 54px;
   display: flex;
@@ -12,6 +13,7 @@
 }
 
 .left {
+  min-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +22,7 @@
 }
 
 .imageContainer {
-  height: 85vh;
+  height: 85%;
 
   /* disabling text highlight when dragging images */
   -webkit-touch-callout: none; /* iOS Safari */
@@ -32,19 +34,14 @@
 }
 
 .image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
+  height: 100%;
 }
 
 .right {
   min-height: 580px;
-  /* height: 60vh; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  /* margin-top: -80px;  */
+  justify-content: space-evenly;
 }
 
 .topRight {
