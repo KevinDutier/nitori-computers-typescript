@@ -80,4 +80,10 @@
 .button:hover {
   background-color: #b9b9b9;
 }
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /* end of cart popover style */

@@ -163,10 +163,13 @@ export const Header: React.FC = () => {
     // if cart is not empty, display cart articles
     else
       return (
-        <>
+        <div>
           {cartArticles}
-          <p className={styles.emptyCart}>Cart total: {cartTotal} €</p>
-        </>
+          <div className={styles.bottom}>
+            <p className={styles.emptyCart}>Total: {cartTotal} €</p>
+            <Button className={styles.button}>Order</Button>
+          </div>
+        </div>
       );
   };
 
