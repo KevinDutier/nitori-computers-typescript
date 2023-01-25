@@ -41,7 +41,9 @@ export const SearchResult: React.FC = () => {
     
   }, [router.query.parameter]);
 
-  // ++++++++++++++ here are the 3 search possibilities: still waiting for result, no results found, or results found ++++++++++++++
+  // ++++++++++++++++++ CODE THAT RETURNS ONE OF 3 POSSIBILITIES ++++++++++++++++++
+  // 3 possibilities: still waiting for result, result found, or no results found
+  
   // STILL WAITING FOR RESULT: returns a spinner
   const spinner = (
     <div className={styles.spinner}>
@@ -72,7 +74,7 @@ export const SearchResult: React.FC = () => {
   // result function, which returns one of these 3 possibilities
   const result = () => {
     if (resultFound === undefined)
-      return spinner; // still waiting for data: return spinner
+    return spinner; // still waiting for data: return spinner
     else if (resultFound === false)
       return noResultsMessage; // no results found: return "no results found" message
     else if (resultFound === true) return productCards; // result found: return productCards

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styles from "../styles/Header.module.css";
 import { useRouter } from "next/router";
@@ -19,18 +18,43 @@ import Button from "react-bootstrap/Button";
 
 // redux imports
 import { useDispatch } from "react-redux";
-import { removeArticle, emptyCart } from "../reducers/cart";
+import { removeArticle } from "../reducers/cart";
 import { removeArticlePrice, resetCartTotal } from "../reducers/cartTotal";
 import { useSelector } from "react-redux";
 
 export const Header: React.FC = () => {
+  // +++++++++++++++ TYPESCRIPT INTERFACES +++++++++++++++
+  interface Article {
+    // types expected for each article property
+    brand: string;
+    model: string;
+    price: number;
+    description: string;
+    img: Array<string>; // array of strings
+  }
+
+  interface State {
+    cart: Cart;
+    cartTotal: CartTotal;
+  }
+
+  interface Cart {
+    // the cart's value is the array of objects (articles) that have been added to the cart
+    value: Array<Object>;
+  }
+
+  interface CartTotal {
+    // cartTotal's value is the subtotal (number) for the articles that have been added to the cart
+    value: number;
+  }
+
   const router = useRouter();
   const [inputText, setInputText] = useState("");
 
   // redux
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.value);
-  const cartTotal = useSelector((state) => state.cartTotal.value);
+  const cart = useSelector((state: State) => state.cart.value);
+  const cartTotal = useSelector((state: State) => state.cartTotal.value);
 
   // converts input text to lower case
   const inputHandler = (e: object) => {
@@ -77,26 +101,17 @@ export const Header: React.FC = () => {
             contact: kevin.dutier@gmail.com
           </div>
           <div className={AboutPopupStyles.checkOut}>
-            Check out the github repos for more information:
+            Check out the github repo for more information:
           </div>
           <br />
           <div className={AboutPopupStyles.links}>
             <a
               className={AboutPopupStyles.link}
-              href="https://github.com/KevinDutier/hitoshi-guitars-frontend"
+              href="https://github.com/KevinDutier/nijika-computers-typescript"
               target="_blank"
               rel="noreferrer"
             >
-              Hitoshi-guitars frontend repo
-            </a>
-            <br />
-            <a
-              className={AboutPopupStyles.link}
-              href="https://github.com/KevinDutier/hitoshi-guitars-backend"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Hitoshi-guitars backend repo
+              Nijika-computers repo
             </a>
           </div>
         </div>
@@ -104,42 +119,50 @@ export const Header: React.FC = () => {
     );
   };
 
-    // passes the article's index and dispatches the function from the reducer (remove)
-    function handleRemoveClick(props, index) {
-      dispatch(removeArticle(index));  // remove article from cart
-      dispatch(removeArticlePrice(props));  // remove article price from cart total
-      if (cart.length === 1) dispatch(resetCartTotal());  // reset cart total to 0
-    }
+  // called when removing article from cart
+  // passes the article's index and dispatches the function from the reducer (remove)
+  function handleRemoveClick(props: object, index: number) {
+    dispatch(removeArticle(index)); // remove article from cart
+    dispatch(removeArticlePrice(props)); // remove article price from cart total
+
+    // @ts-ignore: "expected one argument for resetCartTotal(" (resetCartTotal() does not need an argument, so we can ignore this error)
+    if (cart.length === 1) dispatch(resetCartTotal()); // reset cart total to 0
+  }
 
   // cartPopup: articles stored in the store (redux)
   const cartPopup = () => {
-    const cartArticles = cart.map((article, i) => {
+    // @ts-ignore: "argument of type (...) => JSX.Element" is not assignable to parameter
+    const cartArticles = cart.map((article: Article, i: number) => {
       return (
         <div key={i} className={styles.popoverContainer}>
           <div className={styles.popover}>
-            {/* <img className={styles.image} src={article.img[0]} /> */}
             <div className={styles.popoverText}>
-              <p className={styles.brand}>{article.brand} {article.model}</p>
-              {/* <p className={styles.model}>{article.model}</p> */}
+              <p className={styles.brand}>
+                {article.brand} {article.model}
+              </p>
               <p className={styles.price}>{article.price} €</p>
             </div>
           </div>
-          <img className={styles.xIcon} src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Flat_cross_icon.svg/1200px-Flat_cross_icon.svg.png" onClick={() => handleRemoveClick(article, i)}>
-          </img>
+          <img
+            className={styles.xIcon}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Flat_cross_icon.svg/1200px-Flat_cross_icon.svg.png"
+            onClick={() => handleRemoveClick(article, i)}
+          ></img>
         </div>
       );
-    })
+    });
 
     // if cart is empty, return "your cart is empty" message
-    if (cartArticles.length === 0) return <p className={styles.emptyCart}>Your cart is empty</p>
-
-    // if cart not empty, display cart articles
-    else return (
-      <>
-        {cartArticles}
-        <p className={styles.emptyCart}>Cart total: {cartTotal} €</p>
-      </>
-    ) 
+    if (cartArticles.length === 0)
+      return <p className={styles.emptyCart}>Your cart is empty</p>;
+    // if cart is not empty, display cart articles
+    else
+      return (
+        <>
+          {cartArticles}
+          <p className={styles.emptyCart}>Cart total: {cartTotal} €</p>
+        </>
+      );
   };
 
   return (
@@ -241,7 +264,7 @@ export const Header: React.FC = () => {
                 nested
               >
                 {
-                  // @ts-ignore: (close: Function) => JSX.Element is not assignable to type ReactNode
+                  // @ts-ignore: () => JSX.Element is not assignable to type ReactNode
                   cartPopup
                 }
               </Popup>
