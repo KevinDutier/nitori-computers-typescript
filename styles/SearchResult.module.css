@@ -1,11 +1,39 @@
 .spinner {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
 }
 
 .noResults {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 1em;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 1em;
 }
+
+/* "sort by" popover */
+.sortByContainer {
+  position: absolute;
+
+   /* have tu use "left" instead of "right" because the scrollbar is taken into account when using "right*/
+  left: 93vw;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.popoverIcon {
+  margin: 0.3em 0.5em 0 0.5em;
+  cursor: pointer;
+}
+
+.popoverItem {
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.popoverItemLast {
+  cursor: pointer;
+  padding: 0 6px;
+}
+/* end of "sort by" popover */
