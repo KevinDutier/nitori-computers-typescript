@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import styles from "../styles/Header.module.css";
 import { useRouter } from "next/router";
@@ -16,9 +17,20 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+// redux imports
+import { useDispatch } from "react-redux";
+import { removeArticle, emptyCart } from "../reducers/cart";
+import { removeArticlePrice, resetCartTotal } from "../reducers/cartTotal";
+import { useSelector } from "react-redux";
+
 export const Header: React.FC = () => {
   const router = useRouter();
   const [inputText, setInputText] = useState("");
+
+  // redux
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.value);
+  const cartTotal = useSelector((state) => state.cartTotal.value);
 
   // converts input text to lower case
   const inputHandler = (e: object) => {
@@ -58,8 +70,8 @@ export const Header: React.FC = () => {
         <div className={AboutPopupStyles.content}>
           Nijika Computers is a fictional online computer store. The frontend
           was made with React / Typescript and Next JS, while the backend uses
-          Express JS and Mongoose. The articles&apos; data is stored on a database
-          (MongoDB).
+          Express JS and Mongoose. The articles&apos; data is stored on a
+          database (MongoDB).
           <br />
           <div className={AboutPopupStyles.checkOut}>
             contact: kevin.dutier@gmail.com
@@ -90,6 +102,44 @@ export const Header: React.FC = () => {
         </div>
       </div>
     );
+  };
+
+    // passes the article's index and dispatches the function from the reducer (remove)
+    function handleRemoveClick(props, index) {
+      dispatch(removeArticle(index));  // remove article from cart
+      dispatch(removeArticlePrice(props));  // remove article price from cart total
+      if (cart.length === 1) dispatch(resetCartTotal());  // reset cart total to 0
+    }
+
+  // cartPopup: articles stored in the store (redux)
+  const cartPopup = () => {
+    const cartArticles = cart.map((article, i) => {
+      return (
+        <div key={i} className={styles.popoverContainer}>
+          <div className={styles.popover}>
+            {/* <img className={styles.image} src={article.img[0]} /> */}
+            <div className={styles.popoverText}>
+              <p className={styles.brand}>{article.brand} {article.model}</p>
+              {/* <p className={styles.model}>{article.model}</p> */}
+              <p className={styles.price}>{article.price} €</p>
+            </div>
+          </div>
+          <img className={styles.xIcon} src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Flat_cross_icon.svg/1200px-Flat_cross_icon.svg.png" onClick={() => handleRemoveClick(article, i)}>
+          </img>
+        </div>
+      );
+    })
+
+    // if cart is empty, return "your cart is empty" message
+    if (cartArticles.length === 0) return <p className={styles.emptyCart}>Your cart is empty</p>
+
+    // if cart not empty, display cart articles
+    else return (
+      <>
+        {cartArticles}
+        <p className={styles.emptyCart}>Cart total: {cartTotal} €</p>
+      </>
+    ) 
   };
 
   return (
@@ -185,7 +235,16 @@ export const Header: React.FC = () => {
               <Button variant="outline-success" onClick={() => handleSearch()}>
                 Search
               </Button>
-              <Nav.Link href="/cart">Cart</Nav.Link>
+              <Popup
+                trigger={<Nav.Link>Cart</Nav.Link>}
+                position="bottom center"
+                nested
+              >
+                {
+                  // @ts-ignore: (close: Function) => JSX.Element is not assignable to type ReactNode
+                  cartPopup
+                }
+              </Popup>
             </Nav>
           </Navbar.Collapse>
         </Container>

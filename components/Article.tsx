@@ -2,6 +2,11 @@ import { useRouter } from "next/router";
 import React from "react";
 import styles from "../styles/Article.module.css";
 
+// redux imports
+import { useDispatch } from "react-redux";
+import { addArticle } from "../reducers/cart";
+import { addArticlePrice } from "../reducers/cartTotal";
+
 // import AliceCarousel from "react-alice-carousel";
 // import "react-alice-carousel/lib/alice-carousel.css";
 
@@ -10,7 +15,6 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
 
 // font awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +25,7 @@ import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const Article: React.FC = () => {
-  interface article {
+  interface ArticleData {
     // types expected for each article property
     brand: string;
     model: string;
@@ -43,10 +47,10 @@ export const Article: React.FC = () => {
     },
   });
 
-  const [article, setArticle] = useState<article>(Object);
+  const [article, setArticle] = useState<ArticleData>(Object);
   const [images, setImages] = useState([]);
   const router = useRouter();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // function that fetches article data from database
   const search = async () => {
@@ -71,7 +75,6 @@ export const Article: React.FC = () => {
             <img
               className={styles.image}
               src={image}
-              onDragStart={handleDragStart}
               role="presentation"
             />
           </div>
@@ -87,11 +90,11 @@ export const Article: React.FC = () => {
     search(); // once router.query is truthy, execute search
   }, [router.query]); // retry useEffect when router.query is updated
 
-  // alice carousel function to prevent issues when dragging images
-  const handleDragStart = (e: object) => {
-    // @ts-ignore: property does not exist on type object
-    e.preventDefault();
-  };
+    // passes the article's data and dispatches the function from the reducer (add)
+  const handleAddClick = (props: ArticleData) => {
+    dispatch(addArticle(props)); // add item to cart
+    dispatch(addArticlePrice(props)); // add item price to cart total
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -110,15 +113,6 @@ export const Article: React.FC = () => {
         <div className={styles.main}>
           {/* LEFT SECTION (image carousel) */}
           <div className={styles.left}>
-            {/* <AliceCarousel
-            // @ts-ignore: className expects a string (here it's an object)
-            className={styles.carousel}
-            mouseTracking
-            items={images}
-            autoWidth={true}
-            infinite={true}
-            keyboardNavigation={true}
-          /> */}
             <Carousel
               showStatus={false} // hides "1 of 3" in the corner
               showThumbs={false} // hides thumbnails
@@ -148,7 +142,7 @@ export const Article: React.FC = () => {
               <div className={styles.buttonAnimation}>
                 <button
                   className={styles.button}
-                  // onClick={() => handleAddClick(article)}
+                  onClick={() => handleAddClick(article)}
                 >
                   <FontAwesomeIcon
                     className={styles.cartIcon}
@@ -162,33 +156,6 @@ export const Article: React.FC = () => {
             <div className={styles.descContainer}>
               <p className={styles.descText}>{article.description}</p>
             </div>
-
-            {/* <div className={styles.icons}>
-            <p className={styles.iconText}>
-              <FontAwesomeIcon
-                className={styles.icon}
-                icon={faCircleCheck}
-                style={{ color: "green", fontSize: 24 }}
-              />
-              In stock
-            </p>
-            <p className={styles.iconText}>
-              <FontAwesomeIcon
-                className={styles.icon}
-                icon={faTruckFast}
-                style={{ color: "#358bff", fontSize: 20 }}
-              />
-              Free shipping
-            </p>
-            <p className={styles.iconText}>
-              <FontAwesomeIcon
-                className={styles.icon}
-                icon={faShieldHalved}
-                style={{ color: "#358bff", fontSize: 22 }}
-              />
-              3-year warranty
-            </p>
-          </div> */}
           </div>
         </div>
       </Box>
