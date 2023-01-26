@@ -96,7 +96,7 @@ export const Header: React.FC = () => {
         </button>
         <div className={AboutPopupStyles.header}> About </div>
         <div className={AboutPopupStyles.content}>
-          Nijika Computers is a fictional online computer store. The frontend
+          Nitori Computers is a fictional online computer store. The frontend
           was made with React / Typescript and Next JS, while the backend uses
           Express JS and Mongoose. The articles&apos; data is stored on a
           database (MongoDB).
@@ -111,11 +111,11 @@ export const Header: React.FC = () => {
           <div className={AboutPopupStyles.links}>
             <a
               className={AboutPopupStyles.link}
-              href="https://github.com/KevinDutier/nijika-computers-typescript"
+              href="https://github.com/KevinDutier/nitori-computers-typescript"
               target="_blank"
               rel="noreferrer"
             >
-              Nijika-computers repo
+              Nitori-computers repo
             </a>
           </div>
         </div>
@@ -187,7 +187,7 @@ export const Header: React.FC = () => {
               height="30"
               className="d-inline-block align-top"
             />
-            Nijika Computers
+            Nitori Computers
           </Navbar.Brand>
           {/* ++++++++++++++++ LEFT SECTION ++++++++++++++++ */}
           <Navbar.Collapse id="responsive-navbar-nav">

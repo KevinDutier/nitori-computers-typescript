@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Head>
-            <title>Nijika Computers</title>
+            <title>Nitori Computers</title>
           </Head>
           <Component {...pageProps} />
         </PersistGate>
