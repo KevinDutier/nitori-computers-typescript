@@ -223,7 +223,7 @@ export const Header: React.FC = () => {
                 <NavDropdown.Item href="./search?parameter=asus">
                   Asus
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#./search?parameter=dell">
+                <NavDropdown.Item href="./search?parameter=dell">
                   Dell
                 </NavDropdown.Item>
                 <NavDropdown.Item href="./search?parameter=hp">
