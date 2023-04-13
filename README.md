@@ -1,7 +1,7 @@
 # Link
 https://nitori-computers.vercel.app/
 
-# Hitoshi-guitars
+# Nitori Computers
 
 Nitori Computers is a fictional online computer store. The frontend was made with React/Typescript and Next JS, while the backend uses Express JS and Mongoose. The articles' data is stored on a database (MongoDB). 
 
