@@ -19,7 +19,7 @@ export const SearchResult: React.FC = () => {
   const router = useRouter();
 
   const [articles, setArticles] = useState([]);
-  const [resultFound, setResultFound] = useState(undefined); // before search result comes, resultFound is undefined
+  const [resultFound, setResultFound] = useState(null); // before search result comes, resultFound is undefined
   const [productCards, setProductCards] = useState(<></>); // before search result comes, product card is empty
   const [sortBy, setSortBy] = useState("byBrand"); // by default, articles are sorted by brand
   const [anchorEl, setAnchorEl] = useState(null); // popover menu anchor
@@ -151,7 +151,7 @@ export const SearchResult: React.FC = () => {
 
   // result function, which returns one of these 3 possibilities
   const result = () => {
-    if (resultFound === undefined)
+    if (resultFound === null)
       return spinner; // still waiting for data: return spinner
     else if (resultFound === false)
       return noResultsMessage; // no results found: return "no results found" message
